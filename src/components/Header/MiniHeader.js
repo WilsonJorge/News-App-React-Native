@@ -3,10 +3,19 @@ import React from "react";
 
 export default function MiniHeader({ label }) {
   return (
-    <View className="px-4 my-4 justify-between flex-row items-center">
+    <View
+      style={{
+        paddingHorizontal: 16,
+        marginTop: 16,
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+      }}
+    >
       <Text
-        className="text-xl text-green-800 dark:text-white "
         style={{
+          fontSize: 20,
+          color: "#0F9D58",
           fontFamily: "SpaceGroteskBold",
         }}
       >
@@ -14,8 +23,9 @@ export default function MiniHeader({ label }) {
       </Text>
 
       <Text
-        className="text-base text-gray-600 dark:text-neutral-300 "
         style={{
+          fontSize: 16,
+          color: "#333",
           fontFamily: "SpaceGroteskMedium",
         }}
       >

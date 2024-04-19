@@ -3,7 +3,7 @@ import React from "react";
 
 export default function Loading() {
   return (
-    <View className="flex-1 justify-center items-center">
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <ActivityIndicator size="large" color="green" />
     </View>
   );

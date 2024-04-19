@@ -102,30 +102,64 @@ export default function NewsSection({ newsProps }) {
   const renderItem = ({ item, index }) => {
     return (
       <TouchableOpacity
-        className="mb-4 mx-4 space-y-1"
+        style={{
+          marginBottom: 16,
+          marginHorizontal: 16,
+          flexDirection: "column",
+          justifyContent: "space-between",
+        }}
         key={index}
         onPress={() => handleClick(item)}
       >
-        <View className="flex-row justify-start w-[100%]shadow-sm">
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "flex-start",
+            alignItems: "center",
+            shadowColor: "#000",
+            shadowOffset: { width: 0, height: 2 },
+            shadowOpacity: 0.25,
+            shadowRadius: 3.84,
+            elevation: 5,
+          }}
+        >
           {/* Image */}
-          <View className="items-start justify-start w-[20%]">
+          <View
+            style={{
+              alignItems: "flex-start",
+              justifyContent: "flex-start",
+              width: "20%",
+            }}
+          >
             <Image
               source={{
                 uri:
                   item.urlToImage ||
                   "https://images.unsplash.com/photo-1495020689067-958852a7765e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bmV3c3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
               }}
-              style={{ width: hp(9), height: hp(10) }}
+              style={{ width: hp(9), height: hp(10), borderRadius: 8 }}
               resizeMode="cover"
-              className="rounded-lg"
             />
           </View>
 
           {/* Content */}
-
-          <View className="w-[70%] pl-4 justify-center space-y-1">
+          <View
+            style={{
+              width: "70%",
+              paddingLeft: 16,
+              justifyContent: "center",
+              flexDirection: "column",
+            }}
+          >
             {/* Author */}
-            <Text className="text-xs font-bold text-gray-900 dark:text-neutral-300">
+            <Text
+              style={{
+                fontSize: 12,
+                fontWeight: "bold",
+                color: "#333",
+                fontFamily: "SpaceGroteskBold",
+              }}
+            >
               {item?.author?.length > 20
                 ? item.author.slice(0, 20) + "..."
                 : item.author}
@@ -133,9 +167,11 @@ export default function NewsSection({ newsProps }) {
 
             {/* Title */}
             <Text
-              className="text-neutral-800 capitalize max-w-[90%] dark:text-white "
               style={{
                 fontSize: hp(1.7),
+                color: "#333",
+                textTransform: "capitalize",
+                maxWidth: "90%",
                 fontFamily: "SpaceGroteskBold",
               }}
             >
@@ -145,13 +181,19 @@ export default function NewsSection({ newsProps }) {
             </Text>
 
             {/* Date */}
-            <Text className="text-xs text-gray-700 dark:text-neutral-300">
+            <Text
+              style={{
+                fontSize: 10,
+                color: "#666",
+                fontFamily: "SpaceGroteskMedium",
+              }}
+            >
               {formatDate(item.publishedAt)}
             </Text>
           </View>
 
           {/* Bookmark */}
-          <View className="w-[10%] justify-center">
+          <View style={{ width: "10%", justifyContent: "center" }}>
             <TouchableOpacity
               onPress={() => toggleBookmarkAndSave(item, index)}
             >
@@ -166,7 +208,7 @@ export default function NewsSection({ newsProps }) {
   };
 
   return (
-    <View className="space-y-2 bg-white dark:bg-neutral-900">
+    <View style={{ paddingVertical: 16, backgroundColor: "#fff" }}>
       {/* Header */}
 
       <FlatList

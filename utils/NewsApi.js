@@ -11,7 +11,6 @@ const recommendedNewsUrl = `${apiBaseUrl}/top-headlines?country=us&category=busi
 const discoverNewsUrl = (discover) =>
   `${apiBaseUrl}/top-headlines?country=us&category=${discover}&apiKey=${newsApiKey}`;
 
-
 const searchNewsUrl = (query) =>
   `${apiBaseUrl}/everything?q=${query}&apiKey=${newsApiKey}`;
 
@@ -42,7 +41,6 @@ export const fetchRecommendedNews = async () => {
 export const fetchDiscoverNews = async (discover) => {
   return await newsApiCall(discoverNewsUrl(discover));
 };
-
 
 export const fetchSearchNews = async (query) => {
   const endpoint = searchNewsUrl(query);

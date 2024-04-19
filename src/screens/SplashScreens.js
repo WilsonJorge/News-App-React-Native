@@ -35,8 +35,12 @@ export default function SplashScreens() {
   }
   return (
     <View
-      // source={require("../../assets/images/welcome/reporter.jpg")}
-      className="flex-1 justify-center items-center"
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundImage: require("../../assets/images/welcome/reporter.jpg"),
+      }}
     >
       <LinearGradient
         colors={["rgba(0, 85, 0, 0.95)", "rgba(0, 85, 0, 0.95)"]}
@@ -53,10 +57,16 @@ export default function SplashScreens() {
       />
       <View
         onLayout={onLayoutRootView}
-        className=" "
         entering={FadeInDown.delay(200).duration(700).springify().damping(12)}
       >
-        <Text className="text-white text-3xl font-extrabold uppercase">
+        <Text
+          style={{
+            color: "white",
+            fontSize: 24,
+            fontWeight: "bold",
+            textTransform: "uppercase",
+          }}
+        >
           Stacks news
         </Text>
       </View>

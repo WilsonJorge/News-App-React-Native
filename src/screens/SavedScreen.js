@@ -6,10 +6,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { BookmarkSquareIcon } from "react-native-heroicons/solid";
 import { StatusBar } from "expo-status-bar";
-import { useColorScheme } from "nativewind";
 
 export default function SavedScreen() {
-  const { colorScheme, toggleColorScheme } = useColorScheme();
   const navigation = useNavigation();
   const [savedArticles, setSavedArticles] = useState([]);
   const [bookmarkStatus, setBookmarkStatus] = useState([]);
@@ -117,39 +115,73 @@ export default function SavedScreen() {
   const renderItem = ({ item, index }) => {
     return (
       <TouchableOpacity
-        className="mb-4 space-y-1 "
+        style={{
+          marginBottom: 4,
+          flexDirection: "column",
+          alignItems: "flex-start",
+        }}
         key={index}
         onPress={() => handleClick(item)}
       >
-        <View className="flex-row justify-start w-[100%]shadow-sm">
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "flex-start",
+            width: "100%",
+            shadowColor: "black",
+            shadowOpacity: 0.2,
+            shadowRadius: 2,
+            elevation: 2,
+          }}
+        >
           {/* Image */}
-          <View className="items-start justify-start w-[20%]">
+          <View
+            style={{
+              alignItems: "flex-start",
+              justifyContent: "flex-start",
+              width: "20%",
+            }}
+          >
             <Image
               source={{
                 uri:
                   item.urlToImage ||
                   "https://images.unsplash.com/photo-1495020689067-958852a7765e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bmV3c3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
               }}
-              style={{ width: hp(9), height: hp(10) }}
+              style={{ width: hp(9), height: hp(10), borderRadius: 10 }}
               resizeMode="cover"
-              className="rounded-lg"
             />
           </View>
 
           {/* Content */}
-
-          <View className="w-[70%] pl-4 justify-center space-y-1">
+          <View
+            style={{
+              width: "70%",
+              paddingLeft: 4,
+              justifyContent: "center",
+              flexDirection: "column",
+            }}
+          >
             {/* Author */}
-            <Text className="text-xs font-bold text-gray-900 dark:text-neutral-300">
+            <Text
+              style={{
+                fontSize: 12,
+                fontWeight: "bold",
+                color: "#333",
+                fontFamily: "System",
+              }}
+            >
               {item.author}
             </Text>
 
             {/* Title */}
             <Text
-              className="text-neutral-800 capitalize max-w-[90%] dark:text-white "
               style={{
-                fontSize: hp(1.7),
+                fontSize: 14,
+                color: "#333",
                 fontFamily: "SpaceGroteskBold",
+                maxWidth: "90%",
+                textTransform: "capitalize",
               }}
             >
               {item.title.length > 50
@@ -158,13 +190,13 @@ export default function SavedScreen() {
             </Text>
 
             {/* Date */}
-            <Text className="text-xs text-gray-700 dark:text-neutral-300">
+            <Text style={{ fontSize: 12, color: "#666", fontFamily: "System" }}>
               {formatDate(item.publishedAt)}
             </Text>
           </View>
 
           {/* Save */}
-          <View className="w-[10%] justify-center">
+          <View style={{ width: "10%", justifyContent: "center" }}>
             <TouchableOpacity
               onPress={() => toggleBookmarkAndSave(item, index)}
             >
@@ -177,27 +209,47 @@ export default function SavedScreen() {
   };
 
   return (
-    <SafeAreaView className="p-4 bg-white flex-1 dark:bg-neutral-900">
-      <StatusBar style={colorScheme == "dark" ? "light" : "dark"} />
-      
-      {/* Header  */}
-      <View className="flex-row justify-between items-center">
+    <SafeAreaView
+      style={{
+        padding: 16,
+        backgroundColor: "#fff",
+        flex: 1,
+        dark: { backgroundColor: "#333" },
+      }}
+    >
+      <StatusBar style={"dark"} />
+
+      {/* Header */}
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
         <Text
-          className="font-bold text-xl text-green-800 dark:text-white"
           style={{
             fontFamily: "SpaceGroteskBold",
+            fontSize: 20,
+            color: "#34D399",
           }}
         >
           Saved Articles
         </Text>
         <TouchableOpacity
           onPress={clearSavedArticles}
-          className="bg-green-800 py-1 px-4 rounded-lg"
+          style={{
+            backgroundColor: "#34D399",
+            paddingVertical: 8,
+            paddingHorizontal: 16,
+            borderRadius: 8,
+          }}
         >
           <Text
-            className="font-bold text-lg text-white dark:text-white"
             style={{
               fontFamily: "SpaceGroteskBold",
+              fontSize: 18,
+              color: "#fff",
             }}
           >
             Clear
@@ -205,15 +257,13 @@ export default function SavedScreen() {
         </TouchableOpacity>
       </View>
 
-      <View style={{ marginVertical: hp(2) }} className="space-y-2 ">
+      <View style={{ marginVertical: 16 }}>
         <FlatList
           data={savedArticles}
           showsVerticalScrollIndicator={false}
           keyExtractor={(item) => item.title}
           renderItem={renderItem}
-          contentContainerStyle={{
-            paddingBottom: hp(2),
-          }}
+          contentContainerStyle={{ paddingBottom: 16 }}
         />
       </View>
     </SafeAreaView>
