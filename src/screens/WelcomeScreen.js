@@ -61,7 +61,7 @@ export default function Welcome() {
             letterSpacing: 1,
           }}
         >
-          Stay Informed from Day One
+          Your Portal for Instant Updates
         </Text>
         <Text
           style={{
@@ -73,7 +73,7 @@ export default function Welcome() {
             letterSpacing: 1,
           }}
         >
-          Discover the Latest News with our Seamless Onboarding Experience.
+          Explore the Latest News with Our Seamless Onboarding Experience.
         </Text>
       </View>
 
@@ -90,7 +90,7 @@ export default function Welcome() {
         onPress={() => navigation.navigate("HomeTabs")}
       >
         <Text style={{ fontSize: 16, color: "#0F9D58", fontWeight: "bold" }}>
-          Getting Started
+        Get Started
         </Text>
       </TouchableOpacity>
     </ImageBackground>
